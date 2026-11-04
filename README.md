@@ -184,7 +184,6 @@ Real problems I hit and how I solved them:
 |---|---|---|
 | RDP "can't connect" after restarting the instance | Stopping an instance releases its auto-assigned public IP; the old `.rdp` file pointed to the old address | Download a fresh `.rdp` file after each start (an Elastic IP avoids this in production) |
 | RDP login rejected from a different PC | The client filled in the local machine's username | Log in as `.\Administrator` (the `.\` targets the server's local account) |
-| `ParameterBindingException` and "invalid HTTP Header characters" | Copying commands from a PDF inserted spaces (`- Headers`, `meta- data`) and merged two commands onto one line | Retype commands; never include the `PS C:\>` prompt |
 | `RunAsPPL` showed `2-PropertyTypeDWORD` | Missing space joined the parameters, creating a **string** instead of a DWORD | Rewrote it with `New-ItemProperty ... -PropertyType DWORD -Force`; checked with `.GetValueKind()` |
 | `auditpol` Error 0x00000057 | No spaces between `/set`, `/category`, and the other options | Add a space before each `/` option |
 | Blank columns in verification output | Misspelled property names (`EnabledSecuritySignature`, `RunAsPPI`) | PowerShell's `Select-Object` silently returns empty columns for properties that don't exist, so check the headers |
